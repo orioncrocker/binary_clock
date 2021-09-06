@@ -22,8 +22,8 @@ char s[BITS+1] = {'\0'};
 void num_to_bits(int number, char* arr)
 {
   unsigned bit = 0;
-	for (unsigned i = 1 << (BITS-1); i > 0; i=i/2) {
-		arr[bit] = (number & i) ? '1' : '0';
+  for (unsigned i = 1 << (BITS-1); i > 0; i=i/2) {
+    arr[bit] = (number & i) ? '1' : '0';
     ++bit;
   }
 }
@@ -50,21 +50,21 @@ void vertical_output()
 
 int main()
 {
-	time_t rawtime;
-	struct tm *timeinfo;
-	while(1)
-	{
-		// update time
-		time(&rawtime);
-		timeinfo = localtime(&rawtime);
-		num_to_bits(timeinfo->tm_hour%12,h);
-		num_to_bits(timeinfo->tm_min,m);
-		num_to_bits(timeinfo->tm_sec,s);
+  time_t rawtime;
+  struct tm *timeinfo;
+  while(1)
+  {
+    // update time
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
+    num_to_bits(timeinfo->tm_hour%12,h);
+    num_to_bits(timeinfo->tm_min,m);
+    num_to_bits(timeinfo->tm_sec,s);
 
-		printf("%d:%d:%d\n",timeinfo->tm_hour%12,timeinfo->tm_min,timeinfo->tm_sec);
+    printf("%d:%d:%d\n",timeinfo->tm_hour%12,timeinfo->tm_min,timeinfo->tm_sec);
     horizontal_output();
     //vertical_output();
-		sleep(1);
-	}
-	return 0;
+    sleep(1);
+  }
+  return 0;
 }
